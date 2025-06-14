@@ -4,85 +4,92 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { ExternalLink, Github } from "lucide-react"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ErrorBoundary } from "@/components/error-boundary"
 
 export default function Projects() {
-  // Project data - using static data to avoid API failures
   const projects = [
     {
       id: 1,
-      title: "Cosmic Explorer",
-      description: "An interactive space exploration web application with 3D visualization.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Next.js", "Three.js", "WebGL", "Framer Motion"],
-      categories: ["Web App", "3D", "Interactive"],
-      liveUrl: "https://example.com/cosmic-explorer",
-      githubUrl: "https://github.com/celestialv/cosmic-explorer",
+      title: "Human Stress Detection",
+      description: "Detects stress levels using Random Forest and scikit-learn, enhancing mental wellness through predictive modeling.",
+      image: "/images/human stress detection.png",
+      tags: ["Python", "scikit-learn", "Random Forest"],
+      categories: ["Technical"],
+      githubUrl: "https://github.com/celestial-cyber/Stress-Detection-Model-Using-Random-Forest",
     },
     {
       id: 2,
-      title: "Nebula Dashboard",
-      description: "A data visualization dashboard for space mission analytics.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["React", "D3.js", "TypeScript", "Tailwind CSS"],
-      categories: ["Dashboard", "Data Visualization"],
-      liveUrl: "https://example.com/nebula-dashboard",
-      githubUrl: "https://github.com/celestialv/nebula-dashboard",
+      title: "Heart Disease Prediction",
+      description: "Predicts heart disease risk using Decision Tree & Streamlit. Features real-time predictions and robust outlier handling.",
+      image: "/images/heart disease perdiction.png",
+      tags: ["Python", "Streamlit", "Scikit-learn"],
+      categories: ["Technical"],
+      githubUrl: "https://github.com/celestial-cyber/Heart-Disease-Prediction-Using-ML",
     },
     {
       id: 3,
-      title: "Stellar Gallery",
-      description: "A responsive image gallery showcasing astronomical photography.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Vue.js", "Firebase", "GSAP", "CSS Grid"],
-      categories: ["Gallery", "Photography"],
-      liveUrl: "https://example.com/stellar-gallery",
-      githubUrl: "https://github.com/celestialv/stellar-gallery",
+      title: "Diabetes Prediction System",
+      description: "Uses Random Forest & Streamlit for real-time diabetes predictions with advanced outlier detection and accuracy metrics.",
+      image: "/images/Diabetes Prediction.png",
+      tags: ["Python", "Streamlit", "Random Forest"],
+      categories: ["Technical"],
+      githubUrl: "https://github.com/celestial-cyber/Diabetes-Prediction-System-using-Random-Forest-and-Streamlit",
     },
     {
       id: 4,
-      title: "Orbit Chat",
-      description: "Real-time messaging application with end-to-end encryption.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["React Native", "Socket.io", "Node.js", "MongoDB"],
-      categories: ["Mobile App", "Communication"],
-      liveUrl: "https://example.com/orbit-chat",
-      githubUrl: "https://github.com/celestialv/orbit-chat",
+      title: "Cassiopeia - Rule Based Chatbot",
+      description: "Simple rule-based chatbot that responds based on user input using basic AI techniques.",
+      image: "/images/pngtree-chatbot-app-icon-chat-bot-png-image_5281039.png",
+      tags: ["Python", "Streamlit", "AI"],
+      categories: ["Technical"],
+      githubUrl: "https://github.com/celestial-cyber/AI-Chatbot-Streamlit",
     },
     {
       id: 5,
-      title: "Celestial API",
-      description: "RESTful API service providing astronomical data and calculations.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Node.js", "Express", "PostgreSQL", "Docker"],
-      categories: ["API", "Backend"],
-      liveUrl: "https://example.com/celestial-api",
-      githubUrl: "https://github.com/celestialv/celestial-api",
+      title: "ManoDarpan - Mental Wellness App",
+      description: "Privacy-focused AI mental health app with SOS alerts, journaling, mood tracking, and more. Built for Code for Change 2025.",
+      image: "/images/ManoDarpan.png",
+      tags: ["React", "Tailwind", "TypeScript", "shadcn/ui"],
+      categories: ["Creative"],
+      liveUrl: "https://manodarpan.lovable.app",
+      githubUrl: "https://github.com/celestial-cyber/ManoDarpan-The-AI-mental-wellness-app",
     },
     {
       id: 6,
-      title: "Nova UI",
-      description: "A space-themed UI component library with dark mode support.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["React", "Storybook", "Styled Components", "Jest"],
-      categories: ["UI Library", "Design System"],
-      liveUrl: "https://example.com/nova-ui",
-      githubUrl: "https://github.com/celestialv/nova-ui",
+      title: "Arduino Gas Detection System",
+      description: "Simulated gas detection system with LED & buzzer alerts for environmental safety using Arduino.",
+      image: "/images/arduino image.png",
+      tags: ["Arduino", "Sensors", "Hardware"],
+      categories: ["Hardware"],
+      githubUrl: "https://github.com/celestial-cyber/Arduino-based-gas-detection-project-with-potentiometer",
+    },
+    {
+      id: 7,
+      title: "CarbonWise - Sustainable Living AI",
+      description: "Detects biodegradable vs non-biodegradable items using image recognition and promotes eco-friendly actions.",
+      image: "/images/carbonwise.png",
+      tags: ["AI", "Sustainability", "Computer Vision"],
+      categories: ["Technical"],
+      githubUrl: "https://github.com/celestial-cyber/carbonwise",
+    },
+    {
+      id: 8,
+      title: "Saturn 3D Visualization",
+      description: "Interactive Three.js model of Saturn with rings, moons, and orbiting animations in a space-like environment.",
+      image: "/images/saturn with moon project.png",
+      tags: ["Three.js", "3D", "WebGL"],
+      categories: ["Creative"],
+      githubUrl: "https://github.com/celestial-cyber/SaturnPlanetCodeWithMoons",
     },
   ]
 
-  // Extract unique categories from projects
-  const allCategories = ["All", ...new Set(projects.flatMap((project) => project.categories))]
-
-  // State for active category filter
-  const [activeCategory, setActiveCategory] = useState("All")
-
-  // Filter projects based on active category
-  const filteredProjects =
-    activeCategory === "All" ? projects : projects.filter((project) => project.categories.includes(activeCategory))
+  const allCategories = ["Technical", "Creative", "Hardware"]
+  const [activeCategory, setActiveCategory] = useState("Technical")
+  const filteredProjects = projects.filter((project) => project.categories.includes(activeCategory))
 
   return (
     <ErrorBoundary fallback={<p className="text-center py-10">Something went wrong loading the projects section.</p>}>
@@ -131,14 +138,15 @@ export default function Projects() {
                   key={project.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.03, y: -5 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex"
+                  className="flex transition-transform"
                 >
-                  <Card className="flex flex-col overflow-hidden">
+                  <Card className="flex flex-col overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                     <div className="relative aspect-video overflow-hidden">
                       <Image
-                        src={project.image || "/placeholder.svg"}
+                        src={project.image}
                         alt={project.title}
                         fill
                         className="object-cover transition-transform duration-300 hover:scale-105"
@@ -164,12 +172,14 @@ export default function Projects() {
                           Code
                         </a>
                       </Button>
-                      <Button size="sm" asChild>
-                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="mr-2 h-4 w-4" />
-                          Live Demo
-                        </a>
-                      </Button>
+                      {project.liveUrl && (
+                        <Button size="sm" asChild>
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="mr-2 h-4 w-4" />
+                            Live Demo
+                          </a>
+                        </Button>
+                      )}
                     </CardFooter>
                   </Card>
                 </motion.div>
@@ -184,7 +194,7 @@ export default function Projects() {
           {/* View More Button */}
           <div className="mt-12 flex justify-center">
             <Button variant="outline" asChild>
-              <a href="https://github.com/celestialv" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/celestial-cyber" target="_blank" rel="noopener noreferrer">
                 View More on GitHub
               </a>
             </Button>

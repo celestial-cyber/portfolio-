@@ -6,43 +6,58 @@ import Image from "next/image"
 import { ExternalLink, Github } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ErrorBoundary } from "@/components/error-boundary"
+import { Description } from "@radix-ui/react-toast"
 
 export default function Projects() {
   const projects = [
     {
       id: 1,
       title: "Human Stress Detection",
-      description: "Detects stress levels using Random Forest and scikit-learn, enhancing mental wellness through predictive modeling.",
+      description:
+        "Detects stress levels using Random Forest and scikit-learn, enhancing mental wellness through predictive modeling.",
       image: "/images/human stress detection.png",
       tags: ["Python", "scikit-learn", "Random Forest"],
       categories: ["Technical"],
-      githubUrl: "https://github.com/celestial-cyber/Stress-Detection-Model-Using-Random-Forest",
+      githubUrl:
+        "https://github.com/celestial-cyber/Stress-Detection-Model-Using-Random-Forest",
     },
     {
       id: 2,
       title: "Heart Disease Prediction",
-      description: "Predicts heart disease risk using Decision Tree & Streamlit. Features real-time predictions and robust outlier handling.",
+      description:
+        "Predicts heart disease risk using Decision Tree & Streamlit. Features real-time predictions and robust outlier handling.",
       image: "/images/heart disease perdiction.png",
       tags: ["Python", "Streamlit", "Scikit-learn"],
       categories: ["Technical"],
-      githubUrl: "https://github.com/celestial-cyber/Heart-Disease-Prediction-Using-ML",
+      githubUrl:
+        "https://github.com/celestial-cyber/Heart-Disease-Prediction-Using-ML",
     },
     {
       id: 3,
       title: "Diabetes Prediction System",
-      description: "Uses Random Forest & Streamlit for real-time diabetes predictions with advanced outlier detection and accuracy metrics.",
+      description:
+        "Uses Random Forest & Streamlit for real-time diabetes predictions with advanced outlier detection and accuracy metrics.",
       image: "/images/Diabetes Prediction.png",
       tags: ["Python", "Streamlit", "Random Forest"],
       categories: ["Technical"],
-      githubUrl: "https://github.com/celestial-cyber/Diabetes-Prediction-System-using-Random-Forest-and-Streamlit",
+      githubUrl:
+        "https://github.com/celestial-cyber/Diabetes-Prediction-System-using-Random-Forest-and-Streamlit",
     },
     {
       id: 4,
       title: "Cassiopeia - Rule Based Chatbot",
-      description: "Simple rule-based chatbot that responds based on user input using basic AI techniques.",
+      description:
+        "Simple rule-based chatbot that responds based on user input using basic AI techniques.",
       image: "/images/pngtree-chatbot-app-icon-chat-bot-png-image_5281039.png",
       tags: ["Python", "Streamlit", "AI"],
       categories: ["Technical"],
@@ -51,35 +66,51 @@ export default function Projects() {
     {
       id: 5,
       title: "ManoDarpan - Mental Wellness App",
-      description: "Privacy-focused AI mental health app with SOS alerts, journaling, mood tracking, and more. Built for Code for Change 2025.",
+      description:
+        "Privacy-focused AI mental health app with SOS alerts, journaling, mood tracking, and more. Built for Code for Change 2025.",
       image: "/images/ManoDarpan.png",
       tags: ["React", "Tailwind", "TypeScript", "shadcn/ui"],
-      categories: ["Creative"],
+      categories: ["Technical"],
       liveUrl: "https://manodarpan.lovable.app",
-      githubUrl: "https://github.com/celestial-cyber/ManoDarpan-The-AI-mental-wellness-app",
+      githubUrl:
+        "https://github.com/celestial-cyber/ManoDarpan-The-AI-mental-wellness-app",
     },
     {
       id: 6,
       title: "Arduino Gas Detection System",
-      description: "Simulated gas detection system with LED & buzzer alerts for environmental safety using Arduino.",
+      description:
+        "Simulated gas detection system with LED & buzzer alerts for environmental safety using Arduino.",
       image: "/images/arduino image.png",
       tags: ["Arduino", "Sensors", "Hardware"],
       categories: ["Hardware"],
-      githubUrl: "https://github.com/celestial-cyber/Arduino-based-gas-detection-project-with-potentiometer",
+      githubUrl:
+        "https://github.com/celestial-cyber/Arduino-based-gas-detection-project-with-potentiometer",
     },
     {
       id: 7,
       title: "CarbonWise - Sustainable Living AI",
-      description: "Detects biodegradable vs non-biodegradable items using image recognition and promotes eco-friendly actions.",
+      description:
+        "Detects biodegradable vs non-biodegradable items using image recognition and promotes eco-friendly actions.",
       image: "/images/carbonwise.png",
       tags: ["AI", "Sustainability", "Computer Vision"],
       categories: ["Technical"],
       githubUrl: "https://github.com/celestial-cyber/carbonwise",
     },
     {
-      id: 8,
+      id:8,
+      title:"My Portfolio website Version 1",
+      description: 
+      "I have created my first portfolio website using Prompt Engineering.",
+      image: "/images/Portfolio.png",
+      tags:["Prompt Engineering","Portfolio","website"],
+      categories:["Creative"],
+      liveUrl:"https://celestiv.vercel.app",
+    },
+    {
+      id: 9,
       title: "Saturn 3D Visualization",
-      description: "Interactive Three.js model of Saturn with rings, moons, and orbiting animations in a space-like environment.",
+      description:
+        "Interactive Three.js model of Saturn with rings, moons, and orbiting animations in a space-like environment.",
       image: "/images/saturn with moon project.png",
       tags: ["Three.js", "3D", "WebGL"],
       categories: ["Creative"],
@@ -89,7 +120,9 @@ export default function Projects() {
 
   const allCategories = ["Technical", "Creative", "Hardware"]
   const [activeCategory, setActiveCategory] = useState("Technical")
-  const filteredProjects = projects.filter((project) => project.categories.includes(activeCategory))
+  const filteredProjects = projects.filter((project) =>
+    project.categories.includes(activeCategory)
+  )
 
   return (
     <ErrorBoundary fallback={<p className="text-center py-10">Something went wrong loading the projects section.</p>}>
@@ -113,16 +146,16 @@ export default function Projects() {
             </div>
           </motion.div>
 
-          {/* Category Filter */}
+          {/* Category Filter Buttons */}
           <div className="mx-auto mt-8 max-w-5xl">
-            <div className="flex flex-wrap justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-3">
               {allCategories.map((category) => (
                 <Button
                   key={category}
                   variant={activeCategory === category ? "default" : "outline"}
                   size="sm"
                   onClick={() => setActiveCategory(category)}
-                  className="transition-all duration-300"
+                  className="border border-purple-500 text-sm"
                 >
                   {category}
                 </Button>
@@ -130,20 +163,20 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* Projects Grid */}
+          {/* Project Cards Grid */}
           <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
             {filteredProjects.length > 0 ? (
               filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.03, y: -5 }}
+                  initial={{ opacity: 0, x: -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  whileHover={{ scale: 1.03 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex transition-transform"
+                  transition={{ duration: 0.4, delay: index * 0.15 }}
+                  className="flex"
                 >
-                  <Card className="flex flex-col overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                  <Card className="flex flex-col border border-purple-500 bg-white/5 backdrop-blur-md hover:shadow-xl transition-all duration-300">
                     <div className="relative aspect-video overflow-hidden">
                       <Image
                         src={project.image}
@@ -165,7 +198,7 @@ export default function Projects() {
                         ))}
                       </div>
                     </CardContent>
-                    <CardFooter className="flex justify-between">
+                    <CardFooter className="flex justify-between px-6 pb-6">
                       <Button variant="outline" size="sm" asChild>
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
                           <Github className="mr-2 h-4 w-4" />
@@ -173,7 +206,7 @@ export default function Projects() {
                         </a>
                       </Button>
                       {project.liveUrl && (
-                        <Button size="sm" asChild>
+                        <Button size="sm" asChild className="bg-purple-600 text-white hover:bg-purple-700">
                           <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
                             <ExternalLink className="mr-2 h-4 w-4" />
                             Live Demo
@@ -193,7 +226,7 @@ export default function Projects() {
 
           {/* View More Button */}
           <div className="mt-12 flex justify-center">
-            <Button variant="outline" asChild>
+            <Button variant="outline" asChild className="border border-purple-500">
               <a href="https://github.com/celestial-cyber" target="_blank" rel="noopener noreferrer">
                 View More on GitHub
               </a>

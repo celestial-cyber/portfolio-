@@ -14,15 +14,15 @@ export default function Resume() {
       type: "current",
     },
     {
-      degree: "Diploma in computer applications(web designing)",
-      institution: "Omsoft technologies",
+      degree: "Diploma in Computer Applications (Web Designing)",
+      institution: "Omsoft Technologies",
       period: "Aug 2022 - July 2023",
       type: "completed",
     },
     {
-      degree: "Course on Computer concepts",
-      institution: "NATIONAL INSTITUTE OF ELECTRONICS & INFORMATION TECHNOLOGY (NIELIT)",
-      period: "Jul 2021- Aug 2021",
+      degree: "Course on Computer Concepts",
+      institution: "NIELIT (National Institute of Electronics & Information Technology)",
+      period: "Jul 2021 - Aug 2021",
       grade: "Grade B",
       type: "completed",
     },
@@ -30,12 +30,14 @@ export default function Resume() {
       degree: "Intermediate Education",
       institution: "Shiksha Niketan Intermediate College",
       period: "",
+      grade: "80%",
       type: "completed",
     },
     {
-      degree: "Higher secondary Education",
+      degree: "Higher Secondary Education",
       institution: "Swami Sathyanand Saraswathy Higher Secondary School",
       period: "",
+      grade: "87%",
       type: "completed",
     },
   ]
@@ -68,7 +70,7 @@ export default function Resume() {
             className="flex justify-center mb-12"
           >
             <Button
-              className="bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 px-6 py-3 rounded-full transition-all duration-300"
+              className="bg-black border border-purple-500 text-purple-400 hover:bg-purple-900 hover:text-white px-6 py-3 rounded-full transition-all duration-300"
               asChild
             >
               <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
@@ -85,7 +87,7 @@ export default function Resume() {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Card className="bg-gray-900/50 border-gray-800">
+            <Card className="bg-black border border-purple-500 rounded-lg shadow-lg">
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-white mb-8">Education</h3>
                 <div className="space-y-6">
@@ -99,10 +101,10 @@ export default function Resume() {
                       className="border-l-2 border-purple-500 pl-6 pb-6 last:pb-0"
                     >
                       <div className="space-y-2">
-                        <h4 className="text-lg font-semibold text-white">{edu.degree}</h4>
+                        <h4 className="text-lg font-semibold text-purple-200">{edu.degree}</h4>
                         <p className="text-gray-300 font-medium">{edu.institution}</p>
                         {edu.period && <p className="text-gray-400 text-sm">{edu.period}</p>}
-                        {edu.grade && <p className="text-gray-400 text-sm">{edu.grade}</p>}
+                        {edu.grade && <p className="text-gray-400 text-sm">Grade: {edu.grade}</p>}
                       </div>
                     </motion.div>
                   ))}

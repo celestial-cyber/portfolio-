@@ -92,21 +92,21 @@ export default function About() {
           </motion.div>
         </div>
         <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
-          <Card>
+          <Card className="border border-purple-500">
             <CardContent className="flex flex-col items-center p-6">
               <div className="text-4xl font-bold text-primary">3rd</div>
               <p className="text-center text-sm text-muted-foreground">Year AIML Student</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="border border-purple-500">
             <CardContent className="flex flex-col items-center p-6">
-              <div className="text-4xl font-bold text-primary">15+</div>
-              <p className="text-center text-sm text-muted-foreground">Projects Completed</p>
+              <div className="text-2xl font-bold text-primary text-center">Growth Mindset</div>
+              <p className="text-center text-sm text-muted-foreground">Always exploring and evolving</p>
             </CardContent>
           </Card>
-          <Card>
+          <Card className="border border-purple-500">
             <CardContent className="flex flex-col items-center p-6">
-              <div className="text-4xl font-bold text-primary">∞</div>
+              <div className="text-6xl font-bold text-primary">∞</div>
               <p className="text-center text-sm text-muted-foreground">Curiosity & Learning</p>
             </CardContent>
           </Card>

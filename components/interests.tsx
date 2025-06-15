@@ -1,14 +1,19 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
 import { Code, Palette, Music, BookOpen, Camera, Globe } from "lucide-react"
+import { useIsMobile } from "@/hooks/use-mobile" // 📱 mobile detection
 
 export default function Interests() {
+  const [showAll, setShowAll] = useState(false)
+  const isMobile = useIsMobile()
+
   const interests = [
     {
       id: 1,
-      name: "Programming",
+      name: "Coding",
       description: "Exploring new languages and frameworks, contributing to open source projects.",
       icon: Code,
     },
@@ -44,8 +49,10 @@ export default function Interests() {
     },
   ]
 
+  const visibleInterests = showAll ? interests : interests.slice(0, 3)
+
   return (
-    <section id="interests" className="bg-muted/10 py-20 md:py-28">
+    <section id="interests" className="bg-muted/10 py-16 md:py-28">
       <div className="container px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -59,14 +66,14 @@ export default function Interests() {
               Interests
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600"></div>
             </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed">
+            <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl/relaxed">
               Hobbies and passions beyond my professional work
             </p>
           </div>
         </motion.div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 md:grid-cols-3">
-          {interests.map((interest, index) => (
+        <div className={`mx-auto mt-12 grid max-w-5xl gap-6 ${isMobile ? "grid-cols-1" : "sm:grid-cols-2 md:grid-cols-3"}`}>
+          {visibleInterests.map((interest, index) => (
             <motion.div
               key={interest.id}
               initial={{ opacity: 0, y: 20 }}
@@ -85,6 +92,15 @@ export default function Interests() {
               </Card>
             </motion.div>
           ))}
+        </div>
+
+        <div className="flex justify-center mt-8">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="px-6 py-2 border border-purple-600 rounded-lg text-purple-700 hover:bg-purple-50 transition-all"
+          >
+            {showAll ? "Hide" : "Show More"}
+          </button>
         </div>
       </div>
     </section>

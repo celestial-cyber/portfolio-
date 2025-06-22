@@ -772,6 +772,7 @@ export default function Certifications() {
             >
               🏆 Competition Participation
             </Button>
+            
           </div>
         </motion.div>
 

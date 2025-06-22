@@ -115,6 +115,7 @@ export default function Projects() {
       tags: ["Three.js", "3D", "WebGL"],
       categories: ["Creative"],
       githubUrl: "https://github.com/celestial-cyber/SaturnPlanetCodeWithMoons",
+      liveUrl:"https://celestial-cyber.github.io/SaturnPlanetCodeWithMoons/"
     },
   ]
 

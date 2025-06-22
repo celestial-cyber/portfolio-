@@ -2,48 +2,48 @@
 
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { Calendar, Clock } from "lucide-react"
+import Link from "next/link"
+import { Calendar } from "lucide-react"
 
 export default function Blog() {
   const blogPosts = [
     {
       id: 1,
-      title: "The Future of Web Development",
-      excerpt: "Exploring upcoming trends and technologies that will shape the future of web development.",
-      image: "/placeholder.svg?height=300&width=500",
-      date: "June 15, 2023",
-      readTime: "5 min read",
-      categories: ["Web Development", "Technology"],
-      link: "/blog/future-of-web-development",
+      title: "Unmaking Arima: A Dream between Creation and Destruction",
+      excerpt:
+        "What if the universe had a religion—not bound by names, rituals, or beliefs, but rooted in consciousness, oneness, and truth?",
+      image: "/images/robot.jpeg",
+      date: "June 7, 2025",
+      category: "Sci-fi",
+      link: "https://curiousmindtales.blogspot.com/2025/06/unmaking-arima-dream-between-creation.html",
     },
     {
       id: 2,
-      title: "Mastering UI Design Principles",
-      excerpt: "A deep dive into essential UI design principles that create exceptional user experiences.",
-      image: "/placeholder.svg?height=300&width=500",
-      date: "May 22, 2023",
-      readTime: "7 min read",
-      categories: ["UI/UX", "Design"],
-      link: "/blog/ui-design-principles",
+      title: "A Strange Birthday Wish",
+      excerpt:
+        "In this sci-fi mystery, follow Mr. Cookie as he unravels cryptic birthday messages from a stranger claiming to be his entangled twin.",
+      image: "/images/strange message.png",
+      date: "May 15, 2025",
+      category: "Sci-Fi",
+      link: "/blog/strange-birthday",
     },
     {
       id: 3,
-      title: "Optimizing React Performance",
-      excerpt: "Practical techniques to improve the performance of your React applications.",
-      image: "/placeholder.svg?height=300&width=500",
-      date: "April 10, 2023",
-      readTime: "6 min read",
-      categories: ["React", "Performance"],
-      link: "/blog/react-performance",
+      title: "Nostalgia: Reunite, Relive, and Recreate",
+      excerpt:
+        "Hi, I'm Celestial V—this blog captures my experience volunteering at my college’s alumni meet, where memories, reflections, and future dreams all met in one unforgettable evening.",
+
+      image: "/images/SA.jpeg",
+      date: "July 24, 2023",
+      category: "Personal Experience",
+      link: "https://curiousmindtales.blogspot.com/2024/12/nostalgia-reunite-relive-and-recreate.html",
     },
   ]
 
   return (
-    <section id="blog" className="bg-muted/10 py-20 md:py-28">
+    <section id="blog" className="bg-black py-20 md:py-28 text-white">
       <div className="container px-4 md:px-6">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -51,18 +51,17 @@ export default function Blog() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center justify-center space-y-4 text-center"
         >
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent relative inline-block">
-              Blog
-              <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600"></div>
-            </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-              Thoughts, insights, and tutorials on design and development
-            </p>
-          </div>
+          <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent relative inline-block">
+            Blog
+            <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600"></div>
+          </h2>
+          <p className="text-purple-300 max-w-[700px] text-base md:text-lg">
+            Stories, science & the surreal — direct from my cosmos 🪐
+          </p>
         </motion.div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {/* Blog Cards */}
+        <div className="mx-auto mt-12 grid max-w-6xl gap-10 md:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post, index) => (
             <motion.div
               key={post.id}
@@ -70,56 +69,52 @@ export default function Blog() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-[#0e0e0e] border border-purple-600 rounded-xl overflow-hidden hover:shadow-[0_0_15px_#a855f7] transition-all duration-300 flex flex-col"
             >
-              <Card className="h-full flex flex-col overflow-hidden">
-                <div className="relative aspect-video overflow-hidden">
-                  <Image src={post.image || "/placeholder.svg"} alt={post.title} fill className="object-cover" />
+              {/* Blog Image */}
+              <div className="relative h-48 w-full overflow-hidden">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              {/* Blog Content */}
+              <div className="p-5 flex flex-col justify-between flex-grow">
+                <span className="inline-block mb-2 text-xs px-3 py-1 rounded-full bg-purple-800/20 text-purple-300 border border-purple-500 font-medium w-fit">
+                  {post.category}
+                </span>
+                <h3 className="text-lg font-bold mb-1 text-purple-100">{post.title}</h3>
+                <p className="text-sm text-purple-200 line-clamp-3 mb-3">{post.excerpt}</p>
+                <div className="text-xs text-purple-400 flex items-center gap-2 mb-4">
+                  <Calendar className="w-4 h-4" /> {post.date}
                 </div>
-                <CardHeader className="pb-2">
-                  <div className="flex flex-wrap gap-2">
-                    {post.categories.map((category) => (
-                      <Badge key={category} variant="secondary" className="bg-purple-600/10 text-purple-600">
-                        {category}
-                      </Badge>
-                    ))}
-                  </div>
-                  <CardTitle className="mt-2 line-clamp-2">{post.title}</CardTitle>
-                  <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                    <div className="flex items-center">
-                      <Calendar className="mr-1 h-3 w-3" />
-                      {post.date}
-                    </div>
-                    <div className="flex items-center">
-                      <Clock className="mr-1 h-3 w-3" />
-                      {post.readTime}
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <CardDescription className="line-clamp-3">{post.excerpt}</CardDescription>
-                </CardContent>
-                <CardFooter>
-                  <Button
-                    variant="ghost"
-                    className="w-full bg-gradient-to-br from-purple-600 to-black text-white hover:from-purple-700 hover:to-gray-900"
-                    asChild
-                  >
-                    <a href={post.link}>Read More</a>
-                  </Button>
-                </CardFooter>
-              </Card>
+
+                {/* Read More Button */}
+                <Link
+                  href={post.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-auto inline-block text-sm text-purple-300 border border-purple-500 px-4 py-2 rounded text-center hover:bg-purple-800 transition w-full"
+                >
+                  Read More →
+                </Link>
+              </div>
             </motion.div>
           ))}
         </div>
 
+        {/* Blog CTA Button */}
         <div className="mt-12 flex justify-center">
-          <Button
-            variant="outline"
-            className="bg-gradient-to-br from-purple-600 to-black text-white hover:from-purple-700 hover:to-gray-900"
-            asChild
+          <Link
+            href="https://curiousmindtales.blogspot.com"
+            target="_blank"
+            className="px-6 py-2 border border-purple-500 bg-gradient-to-br from-purple-600 to-black text-white rounded hover:from-purple-700 hover:to-gray-900 transition"
           >
-            <a href="/blog">View All Posts</a>
-          </Button>
+            🌌 Visit My Blog
+          </Link>
         </div>
       </div>
     </section>

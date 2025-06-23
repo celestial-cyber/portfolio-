@@ -3,66 +3,42 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
 export default function Gallery() {
-  const [selectedImage, setSelectedImage] = useState<null | {
-    id: number
-    title: string
-    description: string
-    src: string
-    category: string
-  }>(null)
+  const [selectedImage, setSelectedImage] = useState(null)
 
-  const artworks = [
+  const paintings = [
     {
       id: 1,
-      title: "Cosmic Dreams",
-      description: "Digital illustration exploring the vastness of space and imagination.",
-      src: "/placeholder.svg?height=400&width=400",
-      category: "Digital Art",
+      title: "Autumn Serenity",
+      src: "paintings/pic 1.jpeg",
+      category: "Acrylic",
     },
     {
       id: 2,
-      title: "Urban Reflections",
-      description: "Photography series capturing city life through reflective surfaces.",
-      src: "/placeholder.svg?height=400&width=400",
-      category: "Photography",
+      title: "Mountain Lake Camping",
+      src: "paintings/pic 2.jpeg",
+      category: "Acrylic",
     },
     {
       id: 3,
-      title: "Abstract Emotions",
-      description: "Abstract painting expressing the complexity of human emotions.",
-      src: "/placeholder.svg?height=400&width=400",
-      category: "Painting",
+      title: "Sunset Reflections",
+      src: "paintings/pic 3.jpeg",
+      category: "Acrylic",
     },
     {
       id: 4,
-      title: "Geometric Harmony",
-      description: "Digital design exploring the balance between geometric shapes and colors.",
-      src: "/placeholder.svg?height=400&width=400",
-      category: "Digital Art",
-    },
-    {
-      id: 5,
-      title: "Nature's Patterns",
-      description: "Macro photography revealing the intricate patterns found in nature.",
-      src: "/placeholder.svg?height=400&width=400",
-      category: "Photography",
-    },
-    {
-      id: 6,
-      title: "Celestial Bodies",
-      description: "Mixed media artwork inspired by celestial objects and cosmic phenomena.",
-      src: "/placeholder.svg?height=400&width=400",
-      category: "Mixed Media",
+      title: "Dancing in the Rain",
+      src: "paintings/pic 4.jpeg",
+      category: "Acrylic",
     },
   ]
 
   return (
-    <section id="gallery" className="py-20 md:py-28">
+    <section id="gallery" className="py-20 md:py-28 bg-black text-white">
       <div className="container px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -73,17 +49,17 @@ export default function Gallery() {
         >
           <div className="space-y-2">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent relative inline-block">
-              Art Gallery
+              Painting Gallery
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600"></div>
             </h2>
             <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-              A collection of my artistic creations and visual explorations
+              A glimpse into my hand-crafted paintings and brushwork imagination.
             </p>
           </div>
         </motion.div>
 
-        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 md:grid-cols-3">
-          {artworks.map((artwork, index) => (
+        <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-2 md:grid-cols-4">
+          {paintings.map((artwork, index) => (
             <motion.div
               key={artwork.id}
               initial={{ opacity: 0, y: 20 }}
@@ -93,12 +69,12 @@ export default function Gallery() {
               className="group cursor-pointer"
               onClick={() => setSelectedImage(artwork)}
             >
-              <div className="relative aspect-square overflow-hidden rounded-lg">
+              <div className="relative aspect-square overflow-hidden rounded-lg border border-purple-600 hover:shadow-lg hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300">
                 <Image
                   src={artwork.src || "/placeholder.svg"}
                   alt={artwork.title}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <div className="absolute bottom-0 w-full p-4">
@@ -118,7 +94,6 @@ export default function Gallery() {
             <DialogContent className="max-w-3xl">
               <DialogHeader>
                 <DialogTitle>{selectedImage.title}</DialogTitle>
-                <DialogDescription>{selectedImage.category}</DialogDescription>
               </DialogHeader>
               <div className="relative aspect-video w-full overflow-hidden rounded-md">
                 <Image
@@ -128,7 +103,6 @@ export default function Gallery() {
                   className="object-contain"
                 />
               </div>
-              <p className="text-muted-foreground">{selectedImage.description}</p>
             </DialogContent>
           )}
         </Dialog>
@@ -139,7 +113,13 @@ export default function Gallery() {
             className="bg-gradient-to-br from-purple-600 to-black text-white hover:from-purple-700 hover:to-gray-900"
             asChild
           >
-            <a href="/gallery">View Full Gallery</a>
+            <a
+              href="https://drive.google.com/drive/folders/1ZyChN5uOwqmyr-YpU0d9GKvi9ODPumEF"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Show More Paintings
+            </a>
           </Button>
         </div>
       </div>

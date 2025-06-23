@@ -2,62 +2,17 @@
 
 import type React from "react"
 
-import { useState } from "react"
 import { motion } from "framer-motion"
-import { Mail, MapPin, Phone } from "lucide-react"
+import { Mail, Instagram, Linkedin, Code2, Twitter, Globe, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      })
-
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      })
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: "There was a problem sending your message. Please try again.",
-        variant: "destructive",
-      })
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
-
   return (
-    <section id="contact" className="py-20 md:py-28">
+    <section id="contact" className="py-20 md:py-28 bg-black text-white">
       <div className="container px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -67,7 +22,7 @@ export default function Contact() {
           className="flex flex-col items-center justify-center space-y-4 text-center"
         >
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent relative inline-block">
+            <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent relative inline-block">
               Contact Me
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600"></div>
             </h2>
@@ -76,110 +31,122 @@ export default function Contact() {
             </p>
           </div>
         </motion.div>
+
         <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-2">
+          {/* Get in Touch Form (Left Side) */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex"
           >
-            <div className="space-y-6">
-              <Card>
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                    <Mail className="h-6 w-6 text-primary" />
+            <Card className="w-full h-full flex-grow bg-[#0e0e0e] border border-purple-600 hover:shadow-lg hover:shadow-purple-600/30 transition-all">
+              <CardContent className="p-6 h-full">
+                <h3 className="text-xl font-semibold mb-4 text-purple-400">Get In Touch</h3>
+                <form
+                  action="https://formspree.io/f/mnnvqvbk"
+                  method="POST"
+                  className="space-y-4"
+                >
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Name</Label>
+                      <Input id="name" name="name" placeholder="Your name" required />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email</Label>
+                      <Input id="email" name="email" type="email" placeholder="Your email" required />
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-medium">Email</h3>
-                    <p className="text-sm text-muted-foreground">celestialv@example.com</p>
+                  <div className="space-y-2">
+                    <Label htmlFor="subject">Subject</Label>
+                    <Input id="subject" name="subject" placeholder="Subject" required />
                   </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                    <Phone className="h-6 w-6 text-primary" />
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea id="message" name="message" placeholder="Your message" className="min-h-32" required />
                   </div>
-                  <div>
-                    <h3 className="font-medium">Phone</h3>
-                    <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
-                  </div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="flex items-center gap-4 p-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                    <MapPin className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-medium">Location</h3>
-                    <p className="text-sm text-muted-foreground">San Francisco, CA</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+                  <Button type="submit" className="w-full bg-gradient-to-r from-purple-600 to-purple-800 hover:from-purple-700 hover:to-purple-900 transition-all">
+                    Send Message
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
           </motion.div>
+
+          {/* Connect With Me (Right Side) */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex"
           >
-            <Card>
-              <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-4">
-                  <div className="grid gap-4 md:grid-cols-2">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
-                      <Input
-                        id="name"
-                        name="name"
-                        placeholder="Your name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                      />
+            <Card className="w-full h-full flex-grow bg-[#0e0e0e] border border-purple-600 hover:shadow-lg hover:shadow-purple-600/30 transition-all">
+              <CardContent className="p-6 h-full space-y-6">
+                <div>
+                  <h3 className="text-xl font-semibold text-purple-400">Connect With Me</h3>
+                  <div className="space-y-4 mt-4">
+                    <div className="flex items-center gap-4">
+                      <Mail className="text-purple-400" />
+                      <a href="mailto:farheennisha1405@gmail.com" className="text-cyan-400 hover:underline text-sm">
+                        farheennisha1405@gmail.com
+                      </a>
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="Your email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                      />
+                    <div className="flex items-center gap-4">
+                      <Instagram className="text-purple-400" />
+                      <a href="https://instagram.com/i.farheen.nisha" className="text-cyan-400 hover:underline text-sm">
+                        @i.farheen.nisha
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <Linkedin className="text-purple-400" />
+                      <a href="https://linkedin.com/in/farheennisha" className="text-cyan-400 hover:underline text-sm">
+                        linkedin.com/in/farheennisha
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <Code2 className="text-purple-400" />
+                      <a href="https://leetcode.com/u/CelestialV" className="text-cyan-400 hover:underline text-sm">
+                        leetcode.com/u/CelestialV
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <Twitter className="text-purple-400" />
+                      <a href="https://x.com/I_CelestialV" className="text-cyan-400 hover:underline text-sm">
+                        @I_CelestialV
+                      </a>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <Globe className="text-purple-400" />
+                      <a href="https://curiousmindtales.blogspot.com" className="text-cyan-400 hover:underline text-sm">
+                        curiousmindtales.blogspot.com
+                      </a>
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input
-                      id="subject"
-                      name="subject"
-                      placeholder="Subject"
-                      value={formData.subject}
-                      onChange={handleChange}
-                      required
-                    />
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-purple-400">Follow Me</h3>
+                  <div className="flex gap-4 mt-4">
+                    <a href="https://x.com/I_CelestialV" className="bg-purple-800 hover:bg-purple-700 rounded-full p-3 transition-all">
+                      <Twitter className="text-white h-5 w-5" />
+                    </a>
+                    <a href="https://instagram.com/i.farheen.nisha" className="bg-purple-800 hover:bg-purple-700 rounded-full p-3 transition-all">
+                      <Instagram className="text-white h-5 w-5" />
+                    </a>
+                    <a href="https://github.com/CelestialV" className="bg-purple-800 hover:bg-purple-700 rounded-full p-3 transition-all">
+                      <Github className="text-white h-5 w-5" />
+                    </a>
+                    <a href="https://leetcode.com/u/CelestialV" className="bg-purple-800 hover:bg-purple-700 rounded-full p-3 transition-all">
+                      <Code2 className="text-white h-5 w-5" />
+                    </a>
+                    <a href="https://linkedin.com/in/farheennisha" className="bg-purple-800 hover:bg-purple-700 rounded-full p-3 transition-all">
+                      <Linkedin className="text-white h-5 w-5" />
+                    </a>
                   </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      placeholder="Your message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      className="min-h-32"
-                      required
-                    />
-                  </div>
-                  <Button type="submit" className="w-full" disabled={isSubmitting}>
-                    {isSubmitting ? "Sending..." : "Send Message"}
-                  </Button>
-                </form>
+                </div>
               </CardContent>
             </Card>
           </motion.div>

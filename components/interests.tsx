@@ -3,56 +3,27 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent } from "@/components/ui/card"
-import { Code, Palette, Music, BookOpen, Camera, Globe } from "lucide-react"
-import { useIsMobile } from "@/hooks/use-mobile" // 📱 mobile detection
+import { useIsMobile } from "@/hooks/use-mobile"
 
 export default function Interests() {
   const [showAll, setShowAll] = useState(false)
   const isMobile = useIsMobile()
 
   const interests = [
-    {
-      id: 1,
-      name: "Coding",
-      description: "Exploring new languages and frameworks, contributing to open source projects.",
-      icon: Code,
-    },
-    {
-      id: 2,
-      name: "Digital Art",
-      description: "Creating digital illustrations, 3D modeling, and generative art.",
-      icon: Palette,
-    },
-    {
-      id: 3,
-      name: "Music Production",
-      description: "Composing electronic music and experimenting with sound design.",
-      icon: Music,
-    },
-    {
-      id: 4,
-      name: "Reading",
-      description: "Science fiction, philosophy, and technical books on emerging technologies.",
-      icon: BookOpen,
-    },
-    {
-      id: 5,
-      name: "Photography",
-      description: "Urban landscapes, night photography, and abstract compositions.",
-      icon: Camera,
-    },
-    {
-      id: 6,
-      name: "Travel",
-      description: "Exploring different cultures, architectures, and natural landscapes.",
-      icon: Globe,
-    },
+    { id: 1, name: "🧠 Exploring and Learning new things" },
+    { id: 2, name: "🤖 AIML, Robotics and Cybersecurity" },
+    { id: 3, name: "🎨 Painting" },
+    { id: 4, name: "📝 Writing poems and blogs" },
+    { id: 5, name: "⚡ Harry Potter" },
+    { id: 6, name: "🚀 Space Exploration" },
+    { id: 7, name: "📚 Reading" },
+    { id: 8, name: "📷 Photography" },
   ]
 
-  const visibleInterests = showAll ? interests : interests.slice(0, 3)
+  const visibleInterests = showAll ? interests : interests.slice(0, 6)
 
   return (
-    <section id="interests" className="bg-muted/10 py-16 md:py-28">
+    <section id="interests" className="bg-black py-16 md:py-28 text-white">
       <div className="container px-4 md:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,13 +33,10 @@ export default function Interests() {
           className="flex flex-col items-center justify-center space-y-4 text-center"
         >
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent relative inline-block">
+            <h2 className="text-4xl font-bold tracking-tighter sm:text-5xl bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent relative inline-block">
               Interests
               <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600"></div>
             </h2>
-            <p className="mx-auto max-w-[700px] text-muted-foreground text-base sm:text-lg md:text-xl/relaxed">
-              Hobbies and passions beyond my professional work
-            </p>
           </div>
         </motion.div>
 
@@ -80,14 +48,12 @@ export default function Interests() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ scale: 1.05, boxShadow: "0 0 20px #a855f7" }}
+              className="transition-transform duration-300"
             >
-              <Card className="h-full">
+              <Card className="h-full border border-purple-600 bg-[#0e0e0e] hover:bg-purple-950/30 transition-all duration-300 rounded-xl shadow-md">
                 <CardContent className="flex flex-col items-center p-6 text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-purple-600 to-black">
-                    <interest.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="mt-4 text-xl font-semibold">{interest.name}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{interest.description}</p>
+                  <h3 className="mt-2 text-lg font-semibold text-purple-100">{interest.name}</h3>
                 </CardContent>
               </Card>
             </motion.div>
@@ -97,7 +63,7 @@ export default function Interests() {
         <div className="flex justify-center mt-8">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="px-6 py-2 border border-purple-600 rounded-lg text-purple-700 hover:bg-purple-50 transition-all"
+            className="px-6 py-2 border border-purple-600 rounded-lg text-purple-300 hover:bg-purple-800 transition-all"
           >
             {showAll ? "Hide" : "Show More"}
           </button>

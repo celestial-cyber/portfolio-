@@ -10,21 +10,23 @@ export default function Hero() {
   const phrases = ["Hey, I'm Celestial V", "a dreamer, artist, and explorer"]
 
   return (
-    <section id="home" className="relative min-h-screen w-full overflow-hidden">
-      <div className="container mx-auto flex flex-col items-center justify-center px-4 py-10 md:px-6 md:py-20">
+    <section id="home" className="relative min-h-screen w-full overflow-hidden bg-black">
+      <div className="container mx-auto flex flex-col items-center justify-center px-4 pt-16 pb-10 md:px-6 md:pt-24 md:pb-20">
+        
         {/* Saturn Animation */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="w-full flex justify-center"
+          className="w-full max-w-[500px] md:max-w-[600px] aspect-square flex justify-center items-center relative z-10"
         >
           <SaturnAnimation />
         </motion.div>
 
-        {/* Content Below Saturn */}
-        <div className="mt-[-60px] md:mt-[-100px] flex flex-col items-center text-center z-10 px-2">
-          {/* Typewriter */}
+        {/* Typewriter + Quote + Button */}
+        <div className="mt-[-60px] md:mt-[-120px] flex flex-col items-center text-center z-20 px-2">
+          
+          {/* Typewriter Text */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -41,10 +43,6 @@ export default function Hero() {
               delayAfterPhrase={2500}
               delayAfterDeletion={800}
               className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-mono leading-tight"
-              style={{
-                fontFamily:
-                  '"Courier New", "SF Mono", Monaco, Inconsolata, "Roboto Mono", "Source Code Pro", monospace',
-              }}
             />
           </motion.div>
 
@@ -58,10 +56,10 @@ export default function Hero() {
               textShadow: "0 0 10px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)",
             }}
           >
-            "Wandering the stars with curious mind and a soul stitched with stories"
+            "Wandering the stars with a curious mind and a soul stitched with stories"
           </motion.p>
 
-          {/* Explore Button */}
+          {/* Button */}
           <Link href="#about">
             <motion.button
               initial={{ opacity: 0, y: 20 }}
@@ -76,12 +74,10 @@ export default function Hero() {
               <span className="relative flex items-center justify-center z-10">
                 Explore My Universe
                 <motion.div
-                  animate={{
-                    y: [0, 3, 0],
-                  }}
+                  animate={{ y: [0, 3, 0] }}
                   transition={{
                     duration: 1.5,
-                    repeat: Number.POSITIVE_INFINITY,
+                    repeat: Infinity,
                     ease: "easeInOut",
                   }}
                   className="ml-2 inline-flex"

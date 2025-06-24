@@ -28,12 +28,9 @@ export default function TypewriterEffect({
   useEffect(() => {
     const currentPhrase = phrases[phraseIndex]
 
-    if (isWaiting) {
-      return
-    }
+    if (isWaiting) return
 
     if (!isDeleting && currentText === currentPhrase) {
-      // Finished typing the current phrase
       setIsWaiting(true)
       timeoutRef.current = setTimeout(() => {
         setIsDeleting(true)
@@ -43,7 +40,6 @@ export default function TypewriterEffect({
     }
 
     if (isDeleting && currentText === "") {
-      // Finished deleting the current phrase
       setIsDeleting(false)
       setIsWaiting(true)
       setPhraseIndex((prevIndex) => (prevIndex + 1) % phrases.length)
@@ -53,23 +49,18 @@ export default function TypewriterEffect({
       return
     }
 
-    const timeout = setTimeout(
-      () => {
-        if (isDeleting) {
-          setCurrentText(currentPhrase.substring(0, currentText.length - 1))
-        } else {
-          setCurrentText(currentPhrase.substring(0, currentText.length + 1))
-        }
-      },
-      isDeleting ? deletingSpeed : typingSpeed,
-    )
+    const timeout = setTimeout(() => {
+      if (isDeleting) {
+        setCurrentText(currentPhrase.substring(0, currentText.length - 1))
+      } else {
+        setCurrentText(currentPhrase.substring(0, currentText.length + 1))
+      }
+    }, isDeleting ? deletingSpeed : typingSpeed)
 
     timeoutRef.current = timeout
 
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current)
-      }
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
     }
   }, [
     currentText,
@@ -84,9 +75,11 @@ export default function TypewriterEffect({
   ])
 
   return (
-    <div className={className}>
-      <span>{currentText}</span>
-      <span className="animate-blink">|</span>
+    <div className={`text-center ${className}`}>
+      <h1 className="text-3xl md:text-7xl lg:text-6xl font-semibold leading-tight text-transparent bg-gradient-to-r from-purple-300 via-purple-400 to-purple-500 bg-clip-text">
+        {currentText}
+        <span className="animate-blink text-purple-400 ml-1">|</span>
+      </h1>
     </div>
   )
 }

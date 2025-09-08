@@ -33,6 +33,7 @@ export default function ReadingJourney() {
       { title: "Five Point Someone", author: "Chetan Bhagat" },
       { title: "The Imaginary Friend", author: "Stephen Chbosky" },
       { title: "The Three Mistakes of My Life", author: "Chetan Bhagat" },
+      { title: "One Night at the Call Center", author: "Chetan Bhagat" },
     ],
     Knowledge: [
       { title: "A Brief History of Time", author: "Stephen Hawking" },
@@ -60,7 +61,7 @@ export default function ReadingJourney() {
 
   const visibleBooks = showAll
     ? books[selectedCategory]
-    : books[selectedCategory].slice(0, 2)
+    : books [selectedCategory].slice(0, 2)
 
   return (
     <section id="books" className="bg-black py-20 md:py-28 text-white">

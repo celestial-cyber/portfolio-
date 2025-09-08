@@ -74,7 +74,7 @@ export default function Resume() {
               asChild
             >
               <a
-                href="https://drive.google.com/file/d/1xMgI89Uudw7uFOQg64AeYwIxYbJv9PPm/view?usp=drive_link"
+                href="https://drive.google.com/file/d/1zO71NYnC1oUqrXrTh5jAWP39cGsAA2Pb/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
               >

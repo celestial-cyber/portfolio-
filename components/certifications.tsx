@@ -638,7 +638,18 @@ export default function Certifications() {
     description: "Participation in Cyberspace Quiz Competition",
     link: "", // No link provided
     tags: ["ISRO", "Quiz"]
+  },
+  {
+  
+    id: 19,
+    name: "Neuro Debugging | AI Infinity'25",
+    issuer: "Gradient - St. Peter's Engineerig College",
+    date: "Jul 2025",
+    description: "Participation in Code Debugging event",
+    link: "https://drive.google.com/file/d/1REXgQDC3h2qZ8OjBTkWwWJ3bpQBJLuAR/view?usp=drive_link", // No link provided
+    tags: ["Code Debugging"]
   }
+
 ];
 
 

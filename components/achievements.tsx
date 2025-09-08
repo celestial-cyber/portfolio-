@@ -41,6 +41,15 @@ export default function Achievements() {
     },
     {
       id: 4,
+      title: "Top Performer – Neuro Debugging, AI Infinity'2025",
+      organization: "St. Peter's Engineering College",
+      year: "Feb 2024",
+      description: "Participated in the Code Debugging event and was among the top performers during AI Infinity'2025.",
+      icon: Award,
+      link: "https://drive.google.com/file/d/1_xU5Hw0zlsWRn9QyXnoR8sXdIQP5CPNs/view?usp=sharing"
+    },
+    {
+      id: 5,
       title: "School Topper – UP High School Board Examination",
       organization: "UP Board",
       year: "#",
@@ -48,7 +57,7 @@ export default function Achievements() {
       icon: Medal
     },
     {
-      id: 5,
+      id: 6,
       title: "1st Place in Essay Writing Competition – Fire Service Week",
       organization: "SSS High School",
       year: "2017",
